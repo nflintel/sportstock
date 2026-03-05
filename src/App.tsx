@@ -10,6 +10,7 @@ import League from "./pages/League";
 import Trade from "./pages/Trade";
 import PlayerProfile from "./pages/PlayerProfile";
 import UserProfile from "./pages/UserProfile";
+import Portfolio from "./pages/Portfolio";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
               <Route path="/trade" element={<Trade />} />
               <Route path="/player/:id" element={<PlayerProfile />} />
               <Route path="/profile" element={<UserProfile />} />
+              <Route path="/portfolio" element={<Portfolio />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
