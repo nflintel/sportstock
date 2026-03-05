@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "Trade", href: "#trade" },
@@ -37,12 +39,15 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
             Log In
           </Button>
-          <Button className="gradient-pink-purple border-0 text-primary-foreground hover:opacity-90">
-            Sign Up
-          </Button>
+          <Link to="/league">
+            <Button className="gradient-pink-purple border-0 text-primary-foreground hover:opacity-90">
+              Sign Up
+            </Button>
+          </Link>
         </div>
 
         <button
