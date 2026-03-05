@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Search, TrendingUp, TrendingDown, Trophy } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const players = [
   { id: 1, name: "Luguentz Dort", team: "Oklahoma City Thunder", sport: "NBA", price: 3.91, change: 8.12, initials: "LD" },
@@ -101,7 +102,9 @@ const League = () => {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <div className="font-semibold text-sm">{player.name}</div>
+                      <Link to={`/player/${player.name.toLowerCase().replace(/\s+/g, '-')}`} className="font-semibold text-sm hover:text-primary transition-colors">
+                        {player.name}
+                      </Link>
                       <div className="text-xs text-muted-foreground">{player.team}</div>
                     </div>
                   </div>
@@ -118,9 +121,11 @@ const League = () => {
                       <Button size="sm" variant="outline" className="text-xs h-8 border-destructive/50 text-destructive hover:bg-destructive/10">
                         SELL
                       </Button>
-                      <Button size="sm" className="text-xs h-8 gradient-pink-purple text-primary-foreground border-0">
-                        BUY
-                      </Button>
+                      <Link to="/trade">
+                        <Button size="sm" className="text-xs h-8 gradient-pink-purple text-primary-foreground border-0">
+                          BUY
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>

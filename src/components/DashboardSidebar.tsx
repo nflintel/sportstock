@@ -1,4 +1,4 @@
-import { Trophy, TrendingUp, BarChart3, Users, Settings, Home, Wallet } from "lucide-react";
+import { Trophy, TrendingUp, BarChart3, Users, Settings, Home, Wallet, User } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import {
@@ -22,6 +22,7 @@ const mainItems = [
 ];
 
 const secondaryItems = [
+  { title: "Profile", url: "/profile", icon: User },
   { title: "Community", url: "/community", icon: Users },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
