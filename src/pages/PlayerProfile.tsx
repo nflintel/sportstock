@@ -1,9 +1,13 @@
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 
 const fantasyData = [
   { month: "Jan", value: 14 }, { month: "Feb", value: 21 }, { month: "Mar", value: 28 },
@@ -56,26 +60,50 @@ const upcomingGames = [
 ];
 
 const PlayerProfile = () => {
+  const { id } = useParams();
+  const { user } = useAuth();
+
+  const { data: player } = useQuery({
+    queryKey: ["player", id],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("players").select("*").eq("id", id!).single();
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!id,
+  });
+
+  const { data: holding } = useQuery({
+    queryKey: ["holding", id],
+    queryFn: async () => {
+      const { data } = await supabase.from("holdings").select("*").eq("player_id", id!).single();
+      return data;
+    },
+    enabled: !!id && !!user,
+  });
+
+  const userShares = holding?.shares ?? 0;
+  const totalValue = userShares * (player?.price ?? 0);
+
   return (
     <DashboardLayout>
       <div className="p-6 lg:p-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Main content */}
           <div className="flex-1 space-y-6">
             {/* Player header */}
             <div className="rounded-xl border bg-card p-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                 <Avatar className="h-20 w-20 border-2 border-border">
-                  <AvatarFallback className="bg-secondary text-xl font-bold">SC</AvatarFallback>
+                  <AvatarFallback className="bg-secondary text-xl font-bold">{player?.initials ?? "?"}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <Link to="/league" className="text-xs text-muted-foreground hover:text-primary">← Back to League</Link>
-                  <h1 className="text-2xl font-bold">Stephen Curry</h1>
-                  <p className="text-sm text-muted-foreground">Golden State Warriors</p>
+                  <h1 className="text-2xl font-bold">{player?.name ?? "Loading..."}</h1>
+                  <p className="text-sm text-muted-foreground">{player?.team}</p>
                 </div>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" className="border-destructive/50 text-destructive">Sell</Button>
-                  <Link to="/trade">
+                  <Link to={`/trade/${id}`}>
                     <Button size="sm" className="gradient-pink-purple border-0 text-primary-foreground">Buy</Button>
                   </Link>
                 </div>
@@ -83,20 +111,21 @@ const PlayerProfile = () => {
 
               <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="rounded-lg bg-muted/50 p-3 text-center">
-                  <div className="text-lg font-bold">0.00</div>
-                  <div className="text-[11px] text-muted-foreground">Total Value (0 Shares)</div>
+                  <div className="text-lg font-bold">${totalValue.toFixed(2)}</div>
+                  <div className="text-[11px] text-muted-foreground">Total Value ({userShares} Shares)</div>
                 </div>
                 <div className="rounded-lg bg-muted/50 p-3 text-center">
-                  <div className="text-lg font-bold">$1.06</div>
+                  <div className="text-lg font-bold">${(player?.price ?? 0).toFixed(2)}</div>
                   <div className="text-[11px] text-muted-foreground">Current Price</div>
                 </div>
                 <div className="rounded-lg bg-muted/50 p-3 text-center">
-                  <div className="text-lg font-bold text-sport-green">+0.21 (11%)</div>
+                  <div className={`text-lg font-bold ${(player?.change_24h ?? 0) >= 0 ? "text-sport-green" : "text-destructive"}`}>
+                    {(player?.change_24h ?? 0) >= 0 ? "+" : ""}{(player?.change_24h ?? 0).toFixed(2)}%
+                  </div>
                   <div className="text-[11px] text-muted-foreground">24H Change</div>
                 </div>
               </div>
 
-              {/* Stats row */}
               <div className="grid grid-cols-7 gap-2">
                 {stats.map((stat) => (
                   <div key={stat.label} className="text-center rounded-lg bg-muted/30 p-2">
@@ -135,14 +164,12 @@ const PlayerProfile = () => {
               </div>
             </div>
 
-            {/* Next Game Projections */}
+            {/* Projections */}
             <div className="rounded-xl border bg-card p-5">
               <h3 className="text-sm font-semibold mb-1">Next Game Projections</h3>
               <p className="text-xs text-muted-foreground mb-4">{projections.date}</p>
               <div className="flex items-center gap-3 mb-4">
-                <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center text-xs font-bold">
-                  {projections.opponentInitials}
-                </div>
+                <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center text-xs font-bold">{projections.opponentInitials}</div>
                 <span className="font-medium text-sm">{projections.opponent}</span>
               </div>
               <div className="grid grid-cols-6 gap-3">
@@ -178,9 +205,7 @@ const PlayerProfile = () => {
                       <TableRow key={i}>
                         <TableCell className="text-xs">
                           <div className="flex items-center gap-2">
-                            <div className="h-6 w-6 rounded-full bg-secondary flex items-center justify-center text-[9px] font-bold">
-                              {game.opponentInitials}
-                            </div>
+                            <div className="h-6 w-6 rounded-full bg-secondary flex items-center justify-center text-[9px] font-bold">{game.opponentInitials}</div>
                             <div>
                               <div className="font-medium">{game.opponent}</div>
                               <div className="text-muted-foreground text-[10px]">{game.date}</div>
