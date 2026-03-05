@@ -60,8 +60,10 @@ export default {
         sport: {
           cyan: "hsl(var(--sport-cyan))",
           pink: "hsl(var(--sport-pink))",
+          orange: "hsl(var(--sport-orange))",
           purple: "hsl(var(--sport-purple))",
           green: "hsl(var(--sport-green))",
+          yellow: "hsl(var(--sport-yellow))",
           navy: {
             deep: "hsl(var(--sport-navy-deep))",
             DEFAULT: "hsl(var(--sport-navy))",

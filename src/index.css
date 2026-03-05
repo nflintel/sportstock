@@ -1,102 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 230 25% 95%;
-    --foreground: 235 40% 15%;
+    --background: 220 20% 96%;
+    --foreground: 220 40% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 235 40% 15%;
+    --card-foreground: 220 40% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 235 40% 15%;
+    --popover-foreground: 220 40% 10%;
 
-    --primary: 340 100% 58%;
+    --primary: 16 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 230 20% 90%;
-    --secondary-foreground: 235 40% 15%;
+    --secondary: 220 15% 90%;
+    --secondary-foreground: 220 40% 10%;
 
-    --muted: 230 15% 92%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 220 10% 92%;
+    --muted-foreground: 220 10% 40%;
 
-    --accent: 185 100% 40%;
+    --accent: 200 100% 45%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 230 15% 85%;
-    --input: 230 15% 85%;
-    --ring: 340 100% 58%;
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 16 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 235 40% 15%;
-    --sidebar-primary: 340 100% 58%;
+    --sidebar-foreground: 220 40% 10%;
+    --sidebar-primary: 16 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 230 20% 95%;
-    --sidebar-accent-foreground: 235 40% 15%;
-    --sidebar-border: 230 15% 88%;
-    --sidebar-ring: 340 100% 58%;
+    --sidebar-accent: 220 15% 95%;
+    --sidebar-accent-foreground: 220 40% 10%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 16 100% 50%;
 
-    --sport-cyan: 185 100% 40%;
+    --sport-cyan: 200 100% 45%;
     --sport-pink: 340 100% 58%;
+    --sport-orange: 16 100% 50%;
     --sport-purple: 270 80% 55%;
     --sport-green: 145 70% 40%;
-    --sport-navy-deep: 237 60% 10%;
-    --sport-navy: 237 50% 18%;
-    --sport-navy-light: 237 40% 25%;
+    --sport-navy-deep: 220 60% 8%;
+    --sport-navy: 220 50% 15%;
+    --sport-navy-light: 220 40% 22%;
+    --sport-yellow: 45 100% 55%;
   }
 
   .dark {
-    --background: 235 45% 15%;
-    --foreground: 210 40% 98%;
+    --background: 220 50% 6%;
+    --foreground: 0 0% 98%;
 
-    --card: 235 40% 12%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 45% 9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 235 40% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 45% 9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 340 100% 58%;
+    --primary: 16 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 235 35% 22%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 35% 16%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 235 30% 20%;
-    --muted-foreground: 220 15% 60%;
+    --muted: 220 30% 14%;
+    --muted-foreground: 220 15% 55%;
 
-    --accent: 185 100% 50%;
-    --accent-foreground: 235 45% 10%;
+    --accent: 200 100% 50%;
+    --accent-foreground: 220 50% 6%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 235 30% 25%;
-    --input: 235 30% 25%;
-    --ring: 340 100% 58%;
+    --border: 220 30% 18%;
+    --input: 220 30% 18%;
+    --ring: 16 100% 50%;
 
-    --sidebar-background: 235 45% 10%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 340 100% 58%;
+    --sidebar-background: 220 50% 5%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 16 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 235 35% 22%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 235 30% 25%;
-    --sidebar-ring: 340 100% 58%;
+    --sidebar-accent: 220 35% 16%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 16 100% 50%;
 
-    --sport-cyan: 185 100% 50%;
+    --sport-cyan: 200 100% 55%;
     --sport-pink: 340 100% 58%;
+    --sport-orange: 16 100% 55%;
     --sport-purple: 270 80% 60%;
     --sport-green: 145 70% 55%;
-    --sport-navy-deep: 237 60% 10%;
-    --sport-navy: 237 50% 18%;
-    --sport-navy-light: 237 40% 25%;
+    --sport-navy-deep: 220 60% 5%;
+    --sport-navy: 220 50% 12%;
+    --sport-navy-light: 220 40% 20%;
+    --sport-yellow: 45 100% 60%;
   }
 }
 
@@ -107,26 +113,40 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Rajdhani', 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', 'Rajdhani', system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 }
 
 @layer utilities {
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--sport-pink)), hsl(var(--sport-cyan)));
+    background-image: linear-gradient(135deg, hsl(var(--sport-orange)), hsl(var(--sport-yellow)));
   }
 
   .gradient-pink-purple {
-    background: linear-gradient(135deg, hsl(var(--sport-pink)), hsl(var(--sport-purple)));
+    background: linear-gradient(135deg, hsl(var(--sport-orange)), hsl(var(--primary)));
+  }
+
+  .gradient-ea {
+    background: linear-gradient(135deg, hsl(var(--sport-orange)), hsl(var(--sport-yellow)), hsl(var(--sport-orange)));
+  }
+
+  .gradient-dark {
+    background: linear-gradient(180deg, hsl(var(--sport-navy-deep)), hsl(var(--sport-navy)));
   }
 
   .glow-pink {
-    box-shadow: 0 0 40px hsl(var(--sport-pink) / 0.3), 0 0 80px hsl(var(--sport-pink) / 0.1);
+    box-shadow: 0 0 40px hsl(var(--sport-orange) / 0.4), 0 0 80px hsl(var(--sport-orange) / 0.15);
   }
 
   .glow-cyan {
@@ -134,7 +154,7 @@
   }
 
   .card-glow {
-    box-shadow: 0 4px 30px hsl(var(--sport-pink) / 0.1), 0 0 1px hsl(var(--sport-cyan) / 0.3);
+    box-shadow: 0 4px 30px hsl(var(--sport-orange) / 0.15), 0 0 1px hsl(var(--sport-cyan) / 0.3);
   }
 
   .bg-grid-pattern {
@@ -142,5 +162,27 @@
       linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
       linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
     background-size: 60px 60px;
+  }
+
+  .ea-clip {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+  }
+
+  .ea-clip-reverse {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+  }
+
+  .diagonal-stripe {
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      hsl(var(--sport-orange) / 0.05) 10px,
+      hsl(var(--sport-orange) / 0.05) 20px
+    );
+  }
+
+  .text-shadow-heavy {
+    text-shadow: 0 2px 10px hsl(0 0% 0% / 0.5), 0 4px 20px hsl(0 0% 0% / 0.3);
   }
 }

@@ -43,42 +43,45 @@ const Testimonials = () => {
   const next = () => setCurrent((c) => (c + 1) % testimonials.length);
 
   return (
-    <section className="py-24">
-      <div className="container">
+    <section className="py-24 relative">
+      <div className="absolute inset-0 diagonal-stripe" />
+      <div className="container relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            What Our <span className="gradient-text">Traders Say</span>
-          </h2>
-          <p className="text-muted-foreground max-w-md mx-auto">
+          <div className="inline-block border-b-4 border-primary pb-2 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground uppercase">
+              What Our <span className="gradient-text">Traders Say</span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-md mx-auto font-medium">
             Join thousands of satisfied traders already winning on SportStock.
           </p>
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <div className="relative rounded-2xl border border-border bg-card/40 backdrop-blur-sm p-8 sm:p-12 text-center card-glow">
+          <div className="relative border border-border bg-card/60 backdrop-blur-sm p-8 sm:p-12 text-center border-l-4 border-l-primary">
             <div className="flex justify-center gap-1 mb-6">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-sport-pink text-sport-pink" />
+                <Star key={i} className="h-5 w-5 fill-primary text-primary" />
               ))}
             </div>
 
-            <p className="text-lg text-foreground/90 leading-relaxed mb-8 italic">
+            <p className="text-lg text-foreground/90 leading-relaxed mb-8 font-medium italic">
               "{testimonials[current].quote}"
             </p>
 
-            <Avatar className="h-14 w-14 mx-auto mb-3 border-2 border-sport-pink/30">
-              <AvatarFallback className="bg-secondary text-foreground font-bold">
+            <Avatar className="h-14 w-14 mx-auto mb-3 border-2 border-primary/30 rounded-none">
+              <AvatarFallback className="bg-secondary text-foreground font-extrabold rounded-none">
                 {testimonials[current].initials}
               </AvatarFallback>
             </Avatar>
-            <div className="font-semibold text-foreground">{testimonials[current].name}</div>
-            <div className="text-sm text-muted-foreground">{testimonials[current].location}</div>
+            <div className="font-extrabold text-foreground uppercase">{testimonials[current].name}</div>
+            <div className="text-sm text-muted-foreground font-medium">{testimonials[current].location}</div>
           </div>
 
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={prev}
-              className="h-10 w-10 rounded-full border border-border bg-card/40 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-card/60 transition-all"
+              className="h-10 w-10 border border-border bg-card/40 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -87,15 +90,15 @@ const Testimonials = () => {
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`h-2 rounded-full transition-all ${
-                    i === current ? "w-8 bg-sport-pink" : "w-2 bg-border"
+                  className={`h-1.5 transition-all ${
+                    i === current ? "w-10 bg-primary" : "w-4 bg-border hover:bg-muted-foreground"
                   }`}
                 />
               ))}
             </div>
             <button
               onClick={next}
-              className="h-10 w-10 rounded-full border border-border bg-card/40 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-card/60 transition-all"
+              className="h-10 w-10 border border-border bg-card/40 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
