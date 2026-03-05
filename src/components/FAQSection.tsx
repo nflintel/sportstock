@@ -37,13 +37,15 @@ const faqs = [
 const FAQSection = () => {
   return (
     <section id="faq" className="py-24 relative">
-      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+      <div className="absolute inset-0 diagonal-stripe" />
       <div className="container relative z-10 max-w-3xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Frequently Asked <span className="gradient-text">Questions</span>
-          </h2>
-          <p className="text-muted-foreground max-w-md mx-auto">
+          <div className="inline-block border-b-4 border-primary pb-2 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground uppercase">
+              Frequently Asked <span className="gradient-text">Questions</span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-md mx-auto font-medium">
             Got questions? We've got answers. If you can't find what you're looking for, reach out to our support team.
           </p>
         </div>
@@ -53,12 +55,12 @@ const FAQSection = () => {
             <AccordionItem
               key={i}
               value={`item-${i}`}
-              className="rounded-xl border border-border bg-card/40 backdrop-blur-sm px-6 transition-all hover:bg-card/60 data-[state=open]:card-glow"
+              className="border border-border bg-card/40 backdrop-blur-sm px-6 transition-all hover:bg-card/60 data-[state=open]:border-primary/50 data-[state=open]:border-l-4 data-[state=open]:border-l-primary rounded-none"
             >
-              <AccordionTrigger className="text-foreground font-semibold hover:no-underline text-left">
+              <AccordionTrigger className="text-foreground font-extrabold hover:no-underline text-left uppercase text-sm tracking-wide">
                 {faq.q}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed">
+              <AccordionContent className="text-muted-foreground leading-relaxed font-medium">
                 {faq.a}
               </AccordionContent>
             </AccordionItem>
@@ -68,7 +70,7 @@ const FAQSection = () => {
         <div className="text-center mt-12">
           <Button
             variant="outline"
-            className="border-border text-foreground hover:bg-secondary"
+            className="border-border text-foreground hover:bg-secondary font-bold uppercase tracking-wider rounded-none"
           >
             <MessageCircle className="mr-2 h-4 w-4" />
             Ask a Question
