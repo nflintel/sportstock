@@ -1,6 +1,7 @@
 import LiveTicker from "@/components/LiveTicker";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import SEOHead from "@/components/SEOHead";
 import PlayerCardsCarousel from "@/components/PlayerCardsCarousel";
 import HowItWorks from "@/components/HowItWorks";
 import BuyLowSellHigh from "@/components/BuyLowSellHigh";
@@ -12,7 +13,8 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background">
+      <SEOHead />
       <LiveTicker />
       <Header />
       <HeroSection />
@@ -24,7 +26,7 @@ const Index = () => {
       <Testimonials />
       <FAQSection />
       <Footer />
-    </div>
+    </main>
   );
 };
 

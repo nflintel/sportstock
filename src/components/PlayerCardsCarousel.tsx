@@ -1,17 +1,25 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import basketballImg from "@/assets/basketball-action.jpg";
 import footballImg from "@/assets/football-action.jpg";
 import baseballImg from "@/assets/baseball-action.jpg";
 
+import lebronImg from "@/assets/players/lebron-james.png";
+import mahomesImg from "@/assets/players/patrick-mahomes.png";
+import ohtaniImg from "@/assets/players/shohei-ohtani.png";
+import curryImg from "@/assets/players/stephen-curry.png";
+import kelceImg from "@/assets/players/travis-kelce.png";
+import judgeImg from "@/assets/players/aaron-judge.png";
+import tatumImg from "@/assets/players/jayson-tatum.png";
+import allenImg from "@/assets/players/josh-allen.png";
+
 const players = [
-  { name: "LeBron James", team: "Lakers", sport: "NBA", price: "$47.82", change: "+12.4%", initials: "LJ", positive: true, stats: { ppg: "25.4", rpg: "7.2", apg: "8.1" } },
-  { name: "Patrick Mahomes", team: "Chiefs", sport: "NFL", price: "$52.15", change: "+8.7%", initials: "PM", positive: true, stats: { pass: "4,183", td: "26", qbr: "78.9" } },
-  { name: "Shohei Ohtani", team: "Dodgers", sport: "MLB", price: "$61.30", change: "+15.2%", initials: "SO", positive: true, stats: { avg: ".304", hr: "54", rbi: "130" } },
-  { name: "Stephen Curry", team: "Warriors", sport: "NBA", price: "$39.45", change: "-2.1%", initials: "SC", positive: false, stats: { ppg: "26.8", rpg: "4.5", apg: "5.1" } },
-  { name: "Travis Kelce", team: "Chiefs", sport: "NFL", price: "$34.90", change: "+5.3%", initials: "TK", positive: true, stats: { rec: "93", yds: "1,084", td: "5" } },
-  { name: "Aaron Judge", team: "Yankees", sport: "MLB", price: "$44.20", change: "+9.8%", initials: "AJ", positive: true, stats: { avg: ".322", hr: "58", rbi: "144" } },
-  { name: "Jayson Tatum", team: "Celtics", sport: "NBA", price: "$38.75", change: "+6.1%", initials: "JT", positive: true, stats: { ppg: "27.0", rpg: "8.1", apg: "4.6" } },
-  { name: "Josh Allen", team: "Bills", sport: "NFL", price: "$49.60", change: "+11.5%", initials: "JA", positive: true, stats: { pass: "4,306", td: "28", qbr: "82.4" } },
+  { name: "LeBron James", team: "Lakers", sport: "NBA", price: "$47.82", change: "+12.4%", positive: true, avatar: lebronImg, stats: { ppg: "25.4", rpg: "7.2", apg: "8.1" } },
+  { name: "Patrick Mahomes", team: "Chiefs", sport: "NFL", price: "$52.15", change: "+8.7%", positive: true, avatar: mahomesImg, stats: { pass: "4,183", td: "26", qbr: "78.9" } },
+  { name: "Shohei Ohtani", team: "Dodgers", sport: "MLB", price: "$61.30", change: "+15.2%", positive: true, avatar: ohtaniImg, stats: { avg: ".304", hr: "54", rbi: "130" } },
+  { name: "Stephen Curry", team: "Warriors", sport: "NBA", price: "$39.45", change: "-2.1%", positive: false, avatar: curryImg, stats: { ppg: "26.8", rpg: "4.5", apg: "5.1" } },
+  { name: "Travis Kelce", team: "Chiefs", sport: "NFL", price: "$34.90", change: "+5.3%", positive: true, avatar: kelceImg, stats: { rec: "93", yds: "1,084", td: "5" } },
+  { name: "Aaron Judge", team: "Yankees", sport: "MLB", price: "$44.20", change: "+9.8%", positive: true, avatar: judgeImg, stats: { avg: ".322", hr: "58", rbi: "144" } },
+  { name: "Jayson Tatum", team: "Celtics", sport: "NBA", price: "$38.75", change: "+6.1%", positive: true, avatar: tatumImg, stats: { ppg: "27.0", rpg: "8.1", apg: "4.6" } },
+  { name: "Josh Allen", team: "Bills", sport: "NFL", price: "$49.60", change: "+11.5%", positive: true, avatar: allenImg, stats: { pass: "4,306", td: "28", qbr: "82.4" } },
 ];
 
 const sportColors: Record<string, string> = {
@@ -30,7 +38,7 @@ const PlayerCardsCarousel = () => {
   const doubled = [...players, ...players];
 
   return (
-    <section id="market" className="py-20 overflow-hidden relative">
+    <section id="market" className="py-20 overflow-hidden relative" aria-label="Trending athlete stocks">
       <div className="absolute inset-0 diagonal-stripe" />
       <div className="container mb-12 text-center relative z-10">
         <div className="inline-block border-b-4 border-primary pb-2 mb-4">
@@ -46,18 +54,28 @@ const PlayerCardsCarousel = () => {
       <div className="relative">
         <div className="flex gap-5 animate-scroll-left hover:[animation-play-state:paused]">
           {doubled.map((player, i) => (
-            <div
+            <article
               key={i}
               className="flex-shrink-0 w-60 rounded-none border border-border bg-card/80 backdrop-blur-sm overflow-hidden transition-all hover:card-glow hover:scale-105 hover:border-primary/50 group"
             >
-              {/* Sport image header */}
-              <div className="h-24 relative overflow-hidden">
+              {/* Sport image header with player portrait */}
+              <div className="h-32 relative overflow-hidden">
                 <img
                   src={sportImages[player.sport]}
-                  alt={player.sport}
+                  alt={`${player.sport} action background`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                
+                {/* Player portrait overlay */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-20 overflow-hidden rounded-none border-2 border-primary/40">
+                  <img
+                    src={player.avatar}
+                    alt={`${player.name} stock price card and trading portrait on SportStock`}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+
                 <span className={`absolute top-2 right-2 text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 ${sportColors[player.sport]}`}>
                   {player.sport}
                 </span>
@@ -78,16 +96,9 @@ const PlayerCardsCarousel = () => {
               </div>
 
               <div className="p-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <Avatar className="h-10 w-10 border-2 border-primary/30 rounded-none">
-                    <AvatarFallback className="bg-secondary text-foreground font-extrabold text-sm rounded-none">
-                      {player.initials}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <div className="text-sm font-bold text-foreground uppercase">{player.name}</div>
-                    <div className="text-xs text-muted-foreground font-semibold">{player.team}</div>
-                  </div>
+                <div className="text-center mb-3">
+                  <div className="text-sm font-bold text-foreground uppercase">{player.name}</div>
+                  <div className="text-xs text-muted-foreground font-semibold">{player.team}</div>
                 </div>
                 <div className="flex items-end justify-between border-t border-border pt-3">
                   <div className="text-xl font-extrabold text-foreground">{player.price}</div>
@@ -96,7 +107,7 @@ const PlayerCardsCarousel = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
