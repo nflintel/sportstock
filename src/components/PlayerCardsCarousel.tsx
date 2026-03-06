@@ -10,6 +10,8 @@ import kelceImg from "@/assets/players/travis-kelce.png";
 import judgeImg from "@/assets/players/aaron-judge.png";
 import tatumImg from "@/assets/players/jayson-tatum.png";
 import allenImg from "@/assets/players/josh-allen.png";
+import jokicImg from "@/assets/players/nikola-jokic.png";
+import jacksonImg from "@/assets/players/lamar-jackson.png";
 
 const players = [
   { name: "LeBron James", team: "Lakers", sport: "NBA", price: "$47.82", change: "+12.4%", positive: true, avatar: lebronImg, stats: { ppg: "25.4", rpg: "7.2", apg: "8.1" } },
@@ -20,6 +22,8 @@ const players = [
   { name: "Aaron Judge", team: "Yankees", sport: "MLB", price: "$44.20", change: "+9.8%", positive: true, avatar: judgeImg, stats: { avg: ".322", hr: "58", rbi: "144" } },
   { name: "Jayson Tatum", team: "Celtics", sport: "NBA", price: "$38.75", change: "+6.1%", positive: true, avatar: tatumImg, stats: { ppg: "27.0", rpg: "8.1", apg: "4.6" } },
   { name: "Josh Allen", team: "Bills", sport: "NFL", price: "$49.60", change: "+11.5%", positive: true, avatar: allenImg, stats: { pass: "4,306", td: "28", qbr: "82.4" } },
+  { name: "Nikola Jokić", team: "Nuggets", sport: "NBA", price: "$55.40", change: "+14.3%", positive: true, avatar: jokicImg, stats: { ppg: "26.4", rpg: "12.4", apg: "9.0" } },
+  { name: "Lamar Jackson", team: "Ravens", sport: "NFL", price: "$46.85", change: "+10.2%", positive: true, avatar: jacksonImg, stats: { pass: "3,678", td: "24", qbr: "84.1" } },
 ];
 
 const sportColors: Record<string, string> = {
