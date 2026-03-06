@@ -10,8 +10,8 @@ const HeroSection = () => {
         <img
           src={heroImg}
           alt="Athlete in action under stadium lights"
-          className="w-full h-full object-cover"
-        />
+          className="w-full h-full object-cover" />
+        
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-transparent to-transparent" />
       </div>
@@ -21,7 +21,7 @@ const HeroSection = () => {
       
       <div className="container relative z-10 pb-20 pt-40">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-none border-l-4 border-primary bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-6">
+          <div className="inline-flex items-center gap-2 rounded-none border-l-4 border-primary bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-6">MORE THAN A GAME
             <Zap className="h-3 w-3" />
             It's in the game
           </div>
@@ -38,16 +38,16 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <Button
               size="lg"
-              className="gradient-ea border-0 text-primary-foreground text-base px-10 font-bold uppercase tracking-wider hover:opacity-90 glow-pink rounded-none h-14"
-            >
+              className="gradient-ea border-0 text-primary-foreground text-base px-10 font-bold uppercase tracking-wider hover:opacity-90 glow-pink rounded-none h-14">
+              
               Start Trading
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-foreground/20 text-foreground hover:bg-foreground/10 text-base px-8 font-bold uppercase tracking-wider rounded-none h-14"
-            >
+              className="border-2 border-foreground/20 text-foreground hover:bg-foreground/10 text-base px-8 font-bold uppercase tracking-wider rounded-none h-14">
+              
               Watch Demo
             </Button>
           </div>
@@ -55,20 +55,20 @@ const HeroSection = () => {
           {/* Stats bar */}
           <div className="flex items-center gap-0 border-l-4 border-primary">
             {[
-              { value: "50K+", label: "Active Traders" },
-              { value: "$2M+", label: "Traded Daily" },
-              { value: "200+", label: "Athletes" },
-            ].map((stat, i) => (
-              <div key={i} className="px-6 py-3 border-r border-border/30 last:border-r-0">
+            { value: "50K+", label: "Active Traders" },
+            { value: "$2M+", label: "Traded Daily" },
+            { value: "200+", label: "Athletes" }].
+            map((stat, i) =>
+            <div key={i} className="px-6 py-3 border-r border-border/30 last:border-r-0">
                 <div className="text-2xl font-extrabold text-foreground">{stat.value}</div>
                 <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">{stat.label}</div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroSection;
