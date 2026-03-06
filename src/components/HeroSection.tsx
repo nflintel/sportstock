@@ -19,7 +19,7 @@ const HeroSection = () => {
       {/* Diagonal accent stripe */}
       <div className="absolute top-0 right-0 w-2 h-full gradient-ea opacity-80" />
       
-      <div className="container relative z-10 pb-20 pt-32">
+      <div className="container relative z-10 pb-20 pt-40">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 rounded-none border-l-4 border-primary bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-6">
             <Zap className="h-3 w-3" />
