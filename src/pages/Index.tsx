@@ -1,3 +1,4 @@
+import LiveTicker from "@/components/LiveTicker";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import PlayerCardsCarousel from "@/components/PlayerCardsCarousel";
@@ -12,6 +13,7 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <LiveTicker />
       <Header />
       <HeroSection />
       <PlayerCardsCarousel />
