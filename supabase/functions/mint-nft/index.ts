@@ -55,8 +55,20 @@ Deno.serve(async (req: Request) => {
 
     const mintData: MintRequest = await req.json();
 
+    const contractAddress = Deno.env.get("NFT_CONTRACT_ADDRESS");
+    if (!contractAddress || contractAddress === "0x0000000000000000000000000000000000000000") {
+      return new Response(
+        JSON.stringify({
+          error: "NFT contract not configured. Please set NFT_CONTRACT_ADDRESS in Supabase secrets."
+        }),
+        {
+          status: 503,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
     const tokenId = `0x${Date.now().toString(16)}${Math.random().toString(16).slice(2, 10)}`;
-    const contractAddress = Deno.env.get("NFT_CONTRACT_ADDRESS") || "0x0000000000000000000000000000000000000000";
     const mintTransaction = `0x${Math.random().toString(16).slice(2)}`;
 
     const { data: nft, error: nftError } = await supabaseClient

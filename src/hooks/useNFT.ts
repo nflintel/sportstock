@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { ethers } from 'ethers';
+import { getExplorerUrl } from '@/utils/nftConfig';
 
 export interface MaddenNFT {
   id: string;
@@ -63,45 +64,21 @@ export const useNFTs = () => {
 
   const mintNFT = useMutation({
     mutationFn: async ({ nftData, walletAddress }: { nftData: MintNFTData; walletAddress?: string }) => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error('Must be logged in');
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error('Must be logged in');
 
-      let tokenId = '';
-      let contractAddress = '';
-      let mintTransaction = '';
+      const response = await supabase.functions.invoke('mint-nft', {
+        body: {
+          ...nftData,
+          wallet_address: walletAddress,
+        },
+      });
 
-      if (walletAddress && window.ethereum) {
-        try {
-          const provider = new ethers.BrowserProvider(window.ethereum);
-          const signer = await provider.getSigner();
-
-          tokenId = `0x${Date.now().toString(16)}`;
-          contractAddress = '0x0000000000000000000000000000000000000000';
-          mintTransaction = `0x${Math.random().toString(16).slice(2)}`;
-
-          console.log('NFT minted on blockchain:', { tokenId, contractAddress, mintTransaction });
-        } catch (error) {
-          console.error('Blockchain minting error:', error);
-        }
+      if (response.error) {
+        throw new Error(response.error.message || 'Failed to mint NFT');
       }
 
-      const { data, error } = await supabase
-        .from('madden_nfts')
-        .insert({
-          owner_id: user.id,
-          nft_type: nftData.nft_type,
-          metadata: nftData.metadata,
-          league_id: nftData.league_id,
-          token_id: tokenId || null,
-          contract_address: contractAddress || null,
-          mint_transaction: mintTransaction || null,
-          is_tradeable: true,
-        })
-        .select()
-        .single();
-
-      if (error) throw error;
-      return data;
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['madden-nfts'] });
