@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Zap } from "lucide-react";
+import OptimizedImage from "@/components/OptimizedImage";
 import heroImg from "@/assets/hero-sports.jpg";
 
 const HeroSection = () => {
@@ -7,11 +8,17 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-end overflow-hidden">
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
-        <img
+        <OptimizedImage
           src={heroImg}
-          alt="Athlete in action under stadium lights"
-          className="w-full h-full object-cover" />
-        
+          alt="Professional athlete in action under bright stadium lights during sports competition"
+          priority={true}
+          lazy={false}
+          width={1920}
+          height={1080}
+          objectFit="cover"
+          className="w-full h-full"
+        />
+
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-transparent to-transparent" />
       </div>

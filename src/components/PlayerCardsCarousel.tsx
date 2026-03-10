@@ -1,3 +1,4 @@
+import OptimizedImage from "@/components/OptimizedImage";
 import basketballImg from "@/assets/basketball-action.jpg";
 import footballImg from "@/assets/football-action.jpg";
 import baseballImg from "@/assets/baseball-action.jpg";
@@ -64,19 +65,27 @@ const PlayerCardsCarousel = () => {
             >
               {/* Sport image header with player portrait */}
               <div className="h-32 relative overflow-hidden">
-                <img
+                <OptimizedImage
                   src={sportImages[player.sport]}
-                  alt={`${player.sport} action background`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  alt={`${player.sport} basketball court action scene`}
+                  lazy={true}
+                  width={240}
+                  height={128}
+                  objectFit="cover"
+                  className="w-full h-full group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
-                
+
                 {/* Player portrait overlay */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-20 overflow-hidden rounded-none border-2 border-primary/40">
-                  <img
+                  <OptimizedImage
                     src={player.avatar}
-                    alt={`${player.name} stock price card and trading portrait on SportStock`}
-                    className="w-full h-full object-cover object-top"
+                    alt={`${player.name} professional headshot photo for stock trading card`}
+                    lazy={true}
+                    width={80}
+                    height={80}
+                    objectFit="cover"
+                    className="w-full h-full object-top"
                   />
                 </div>
 
