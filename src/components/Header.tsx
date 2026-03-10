@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const navLinks = [
   { label: "Trade", href: "#trade" },
   { label: "Market", href: "#market" },
+  { label: "Madden Leagues", href: "/madden" },
   { label: "About", href: "#about" },
   { label: "FAQ", href: "#faq" },
 ];
