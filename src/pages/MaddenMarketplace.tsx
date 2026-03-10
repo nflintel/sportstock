@@ -21,42 +21,48 @@ const MaddenMarketplace = () => {
   return (
     <DashboardLayout>
       <main className="min-h-screen bg-background">
-        <div className="container py-8">
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-between">
+        <div className="container px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <div className="flex flex-col gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h1 className="text-4xl font-bold mb-2">Madden Marketplace</h1>
-                <p className="text-muted-foreground">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">Madden Marketplace</h1>
+                <p className="text-sm sm:text-base text-muted-foreground">
                   Create leagues, trade NFTs, and dominate the Madden universe
                 </p>
               </div>
-              <WalletConnect />
+              <div className="flex justify-start sm:justify-end">
+                <WalletConnect />
+              </div>
             </div>
 
             <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="leagues">
-                  <Users className="mr-2 h-4 w-4" />
-                  Leagues
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-1">
+                <TabsTrigger value="leagues" className="text-xs sm:text-sm">
+                  <Users className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Leagues</span>
+                  <span className="sm:hidden">All</span>
                 </TabsTrigger>
-                <TabsTrigger value="my-leagues">
-                  <Gamepad2 className="mr-2 h-4 w-4" />
-                  My Leagues
+                <TabsTrigger value="my-leagues" className="text-xs sm:text-sm">
+                  <Gamepad2 className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">My Leagues</span>
+                  <span className="sm:hidden">Mine</span>
                 </TabsTrigger>
-                <TabsTrigger value="nfts">
-                  <TrendingUp className="mr-2 h-4 w-4" />
-                  My NFTs
+                <TabsTrigger value="nfts" className="text-xs sm:text-sm">
+                  <TrendingUp className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">My NFTs</span>
+                  <span className="sm:hidden">NFTs</span>
                 </TabsTrigger>
-                <TabsTrigger value="marketplace">
-                  <TrendingUp className="mr-2 h-4 w-4" />
-                  Marketplace
+                <TabsTrigger value="marketplace" className="text-xs sm:text-sm">
+                  <TrendingUp className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Marketplace</span>
+                  <span className="sm:hidden">Market</span>
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="leagues" className="space-y-4 mt-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold">Public Leagues</h2>
-                  <Button className="gradient-ea">
+              <TabsContent value="leagues" className="space-y-4 mt-4 sm:mt-6">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <h2 className="text-xl sm:text-2xl font-bold">Public Leagues</h2>
+                  <Button className="gradient-ea w-full sm:w-auto">
                     <Plus className="mr-2 h-4 w-4" />
                     Create League
                   </Button>
@@ -77,9 +83,9 @@ const MaddenMarketplace = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                     {publicLeagues?.map((league) => (
-                      <Card key={league.id} className="hover:border-primary transition-colors">
+                      <Card key={league.id} className="hover:border-primary transition-colors cursor-pointer">
                         <CardHeader>
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
@@ -133,19 +139,19 @@ const MaddenMarketplace = () => {
                 )}
               </TabsContent>
 
-              <TabsContent value="my-leagues" className="space-y-4 mt-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold">My Leagues</h2>
-                  <Button className="gradient-ea">
+              <TabsContent value="my-leagues" className="space-y-4 mt-4 sm:mt-6">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <h2 className="text-xl sm:text-2xl font-bold">My Leagues</h2>
+                  <Button className="gradient-ea w-full sm:w-auto">
                     <Plus className="mr-2 h-4 w-4" />
                     Create League
                   </Button>
                 </div>
 
                 {loadingMy ? (
-                  <div>Loading your leagues...</div>
+                  <div className="text-center py-8">Loading your leagues...</div>
                 ) : myLeagues && myLeagues.length > 0 ? (
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                     {myLeagues.map((league) => (
                       <Card key={league.id} className="border-primary">
                         <CardHeader>
@@ -192,19 +198,19 @@ const MaddenMarketplace = () => {
                 )}
               </TabsContent>
 
-              <TabsContent value="nfts" className="space-y-4 mt-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold">My NFT Collection</h2>
-                  <Button className="gradient-ea">
+              <TabsContent value="nfts" className="space-y-4 mt-4 sm:mt-6">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <h2 className="text-xl sm:text-2xl font-bold">My NFT Collection</h2>
+                  <Button className="gradient-ea w-full sm:w-auto">
                     <Plus className="mr-2 h-4 w-4" />
                     Mint NFT
                   </Button>
                 </div>
 
                 {loadingMyNFTs ? (
-                  <div>Loading your NFTs...</div>
+                  <div className="text-center py-8">Loading your NFTs...</div>
                 ) : myNFTs && myNFTs.length > 0 ? (
-                  <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
                     {myNFTs.map((nft) => (
                       <Card key={nft.id} className="overflow-hidden">
                         <div className="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
@@ -248,13 +254,13 @@ const MaddenMarketplace = () => {
                 )}
               </TabsContent>
 
-              <TabsContent value="marketplace" className="space-y-4 mt-6">
-                <h2 className="text-2xl font-bold">NFT Marketplace</h2>
+              <TabsContent value="marketplace" className="space-y-4 mt-4 sm:mt-6">
+                <h2 className="text-xl sm:text-2xl font-bold">NFT Marketplace</h2>
 
                 {loadingListings ? (
-                  <div>Loading marketplace...</div>
+                  <div className="text-center py-8">Loading marketplace...</div>
                 ) : listings && listings.length > 0 ? (
-                  <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+                  <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
                     {listings.map((listing: any) => (
                       <Card key={listing.id} className="overflow-hidden">
                         <div className="aspect-square bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">

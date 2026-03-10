@@ -48,15 +48,15 @@ const CreateLeagueModal = ({ open, onOpenChange }: CreateLeagueModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto w-[95vw] sm:w-full">
         <DialogHeader>
-          <DialogTitle>Create Madden League</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-lg sm:text-xl">Create Madden League</DialogTitle>
+          <DialogDescription className="text-sm">
             Set up your private or public Madden league marketplace
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div className="space-y-2">
             <Label htmlFor="name">League Name *</Label>
             <Input
@@ -79,9 +79,9 @@ const CreateLeagueModal = ({ open, onOpenChange }: CreateLeagueModalProps) => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="platform">Platform *</Label>
+              <Label htmlFor="platform" className="text-sm">Platform *</Label>
               <Select
                 value={formData.platform}
                 onValueChange={(value) => setFormData({ ...formData, platform: value })}
@@ -99,7 +99,7 @@ const CreateLeagueModal = ({ open, onOpenChange }: CreateLeagueModalProps) => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="league_type">League Type *</Label>
+              <Label htmlFor="league_type" className="text-sm">League Type *</Label>
               <Select
                 value={formData.league_type}
                 onValueChange={(value) => setFormData({ ...formData, league_type: value })}
@@ -129,10 +129,10 @@ const CreateLeagueModal = ({ open, onOpenChange }: CreateLeagueModalProps) => {
             />
           </div>
 
-          <div className="flex items-center justify-between p-4 border rounded-lg">
-            <div className="space-y-0.5">
-              <Label htmlFor="is_public" className="text-base">Public League</Label>
-              <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-3 sm:p-4 border rounded-lg">
+            <div className="space-y-0.5 flex-1">
+              <Label htmlFor="is_public" className="text-sm sm:text-base">Public League</Label>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Allow anyone to discover and join your league
               </p>
             </div>
@@ -143,13 +143,13 @@ const CreateLeagueModal = ({ open, onOpenChange }: CreateLeagueModalProps) => {
             />
           </div>
 
-          <div className="flex gap-3 justify-end">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+          <div className="flex flex-col sm:flex-row gap-3 sm:justify-end">
+            <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="w-full sm:w-auto">
               Cancel
             </Button>
             <Button
               type="submit"
-              className="gradient-ea"
+              className="gradient-ea w-full sm:w-auto"
               disabled={createLeague.isPending || !formData.name}
             >
               {createLeague.isPending ? 'Creating...' : 'Create League'}

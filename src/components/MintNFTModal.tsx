@@ -67,18 +67,18 @@ const MintNFTModal = ({ open, onOpenChange, leagueId }: MintNFTModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto w-[95vw] sm:w-full">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Zap className="h-5 w-5 text-primary" />
+          <DialogTitle className="flex items-center gap-2 text-lg sm:text-xl">
+            <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
             Mint Madden NFT
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-sm">
             Create a unique NFT for your Madden achievements, player cards, or team badges
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div className="space-y-2">
             <Label htmlFor="nft_type">NFT Type *</Label>
             <Select
@@ -134,7 +134,7 @@ const MintNFTModal = ({ open, onOpenChange, leagueId }: MintNFTModalProps) => {
             </p>
           </div>
 
-          <div className="p-4 bg-muted/50 rounded-lg space-y-2">
+          <div className="p-3 sm:p-4 bg-muted/50 rounded-lg space-y-2">
             <h4 className="font-semibold text-sm">NFT Attributes (Optional)</h4>
             <p className="text-xs text-muted-foreground mb-3">
               Add custom attributes like stats, rarity, or special traits
@@ -143,6 +143,7 @@ const MintNFTModal = ({ open, onOpenChange, leagueId }: MintNFTModalProps) => {
               type="button"
               variant="outline"
               size="sm"
+              className="w-full sm:w-auto"
               onClick={() => {
                 setFormData({
                   ...formData,
@@ -154,10 +155,11 @@ const MintNFTModal = ({ open, onOpenChange, leagueId }: MintNFTModalProps) => {
             </Button>
 
             {formData.attributes.map((attr, index) => (
-              <div key={index} className="flex gap-2 mt-2">
+              <div key={index} className="flex flex-col sm:flex-row gap-2 mt-2">
                 <Input
                   placeholder="Trait (e.g., Overall)"
                   value={attr.trait_type}
+                  className="flex-1"
                   onChange={(e) => {
                     const newAttrs = [...formData.attributes];
                     newAttrs[index].trait_type = e.target.value;
@@ -167,6 +169,7 @@ const MintNFTModal = ({ open, onOpenChange, leagueId }: MintNFTModalProps) => {
                 <Input
                   placeholder="Value (e.g., 99)"
                   value={attr.value}
+                  className="flex-1"
                   onChange={(e) => {
                     const newAttrs = [...formData.attributes];
                     newAttrs[index].value = e.target.value;
@@ -177,6 +180,7 @@ const MintNFTModal = ({ open, onOpenChange, leagueId }: MintNFTModalProps) => {
                   type="button"
                   variant="ghost"
                   size="sm"
+                  className="w-full sm:w-auto"
                   onClick={() => {
                     const newAttrs = formData.attributes.filter((_, i) => i !== index);
                     setFormData({ ...formData, attributes: newAttrs });
@@ -189,20 +193,20 @@ const MintNFTModal = ({ open, onOpenChange, leagueId }: MintNFTModalProps) => {
           </div>
 
           {!isConnected && (
-            <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-              <p className="text-sm text-yellow-600 dark:text-yellow-400">
+            <div className="p-3 sm:p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+              <p className="text-xs sm:text-sm text-yellow-600 dark:text-yellow-400">
                 Connect your wallet to mint NFTs on the blockchain
               </p>
             </div>
           )}
 
-          <div className="flex gap-3 justify-end">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+          <div className="flex flex-col sm:flex-row gap-3 sm:justify-end">
+            <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="w-full sm:w-auto">
               Cancel
             </Button>
             <Button
               type="submit"
-              className="gradient-ea"
+              className="gradient-ea w-full sm:w-auto"
               disabled={mintNFT.isPending || !formData.name || !isConnected}
             >
               <Zap className="mr-2 h-4 w-4" />
