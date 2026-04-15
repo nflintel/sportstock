@@ -1,4 +1,4 @@
-import { Trophy, TrendingUp, BarChart3, Users, Settings, Home, Wallet, User } from "lucide-react";
+import { Trophy, TrendingUp, ChartBar as BarChart3, Users, Settings, Chrome as Home, Wallet, User, Vote, Crown } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import {
@@ -19,6 +19,11 @@ const mainItems = [
   { title: "Trade", url: "/trade", icon: TrendingUp },
   { title: "Portfolio", url: "/portfolio", icon: BarChart3 },
   { title: "Wallet", url: "/wallet", icon: Wallet },
+];
+
+const gamificationItems = [
+  { title: "Leaderboard", url: "/leaderboard", icon: Crown },
+  { title: "Governance", url: "/governance", icon: Vote },
 ];
 
 const secondaryItems = [
@@ -63,6 +68,13 @@ export function DashboardSidebar() {
           <SidebarGroupLabel>Trading</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>{renderItems(mainItems)}</SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Community</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>{renderItems(gamificationItems)}</SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 

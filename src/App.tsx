@@ -22,6 +22,8 @@ import Portfolio from "./pages/Portfolio";
 import Auth from "./pages/Auth";
 import FocusDemo from "./pages/FocusDemo";
 import MaddenMarketplace from "./pages/MaddenMarketplace";
+import Leaderboard from "./pages/Leaderboard";
+import Governance from "./pages/Governance";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +52,8 @@ const App = () => (
                     <Route path="/profile" element={<UserProfile />} />
                     <Route path="/portfolio" element={<Portfolio />} />
                     <Route path="/madden" element={<MaddenMarketplace />} />
+                    <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/governance" element={<Governance />} />
                     <Route path="/focus-demo" element={<FocusDemo />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
