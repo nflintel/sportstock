@@ -1,4 +1,4 @@
-import { Trophy, TrendingUp, ChartBar as BarChart3, Users, Settings, Chrome as Home, Wallet, User, Vote, Crown } from "lucide-react";
+import { Trophy, TrendingUp, ChartBar as BarChart3, Users, Settings, Chrome as Home, Wallet, User, Vote, Crown, Package } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import {
@@ -18,6 +18,7 @@ const mainItems = [
   { title: "League", url: "/league", icon: Trophy },
   { title: "Trade", url: "/trade", icon: TrendingUp },
   { title: "Portfolio", url: "/portfolio", icon: BarChart3 },
+  { title: "Athlete Packs", url: "/packs", icon: Package },
   { title: "Wallet", url: "/wallet", icon: Wallet },
 ];
 
