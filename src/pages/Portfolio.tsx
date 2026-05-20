@@ -80,40 +80,40 @@ const Portfolio = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-6 lg:p-8">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-6">Portfolio</h1>
+      <div className="p-4 sm:p-6 lg:p-8">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-5 sm:mb-6">Portfolio</h1>
 
         {/* Summary cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div className="rounded-xl border bg-card p-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="rounded-xl border bg-card p-3 sm:p-5">
             <div className="text-xs text-muted-foreground mb-1">Portfolio Value</div>
-            <div className="text-2xl font-bold">${totalValue.toFixed(2)}</div>
+            <div className="text-xl sm:text-2xl font-bold">${totalValue.toFixed(2)}</div>
           </div>
-          <div className="rounded-xl border bg-card p-5">
+          <div className="rounded-xl border bg-card p-3 sm:p-5">
             <div className="text-xs text-muted-foreground mb-1">Total P&L</div>
-            <div className={`text-2xl font-bold flex items-center gap-1 ${totalPnl >= 0 ? "text-sport-green" : "text-destructive"}`}>
-              {totalPnl >= 0 ? <TrendingUp className="h-5 w-5" /> : <TrendingDown className="h-5 w-5" />}
+            <div className={`text-xl sm:text-2xl font-bold flex items-center gap-1 ${totalPnl >= 0 ? "text-sport-green" : "text-destructive"}`}>
+              {totalPnl >= 0 ? <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" /> : <TrendingDown className="h-4 w-4 sm:h-5 sm:w-5" />}
               ${Math.abs(totalPnl).toFixed(2)}
             </div>
             <div className={`text-xs font-medium ${totalPnl >= 0 ? "text-sport-green" : "text-destructive"}`}>
               {totalPnl >= 0 ? "+" : ""}{totalPnlPercent.toFixed(1)}%
             </div>
           </div>
-          <div className="rounded-xl border bg-card p-5">
-            <div className="text-xs text-muted-foreground mb-1">Wallet Balance</div>
-            <div className="text-2xl font-bold">${wallet?.balance?.toFixed(2) ?? "0.00"}</div>
+          <div className="rounded-xl border bg-card p-3 sm:p-5">
+            <div className="text-xs text-muted-foreground mb-1">Wallet</div>
+            <div className="text-xl sm:text-2xl font-bold">${wallet?.balance?.toFixed(2) ?? "0.00"}</div>
           </div>
-          <div className="rounded-xl border bg-card p-5">
-            <div className="text-xs text-muted-foreground mb-1">Active Positions</div>
-            <div className="text-2xl font-bold">{holdings.length}</div>
+          <div className="rounded-xl border bg-card p-3 sm:p-5">
+            <div className="text-xs text-muted-foreground mb-1">Positions</div>
+            <div className="text-xl sm:text-2xl font-bold">{holdings.length}</div>
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Left column */}
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 min-w-0 space-y-5 sm:space-y-6">
             {/* Holdings table */}
-            <div className="rounded-xl border bg-card p-6">
+            <div className="rounded-xl border bg-card p-4 sm:p-6">
               <h3 className="text-lg font-bold mb-4">Holdings</h3>
               {portfolioItems.length === 0 ? (
                 <div className="text-center py-8 text-muted-foreground">
@@ -126,22 +126,22 @@ const Portfolio = () => {
                     <Link
                       key={h.id}
                       to={`/player/${h.players?.id}`}
-                      className="flex items-center justify-between p-4 rounded-xl border hover:shadow-md transition-all group"
+                      className="flex items-center justify-between p-3 sm:p-4 rounded-xl border hover:shadow-md transition-all group"
                     >
-                      <div className="flex items-center gap-4">
-                        <Avatar className="h-10 w-10 border border-border">
+                      <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                        <Avatar className="h-9 w-9 sm:h-10 sm:w-10 border border-border shrink-0">
                           <AvatarFallback className="bg-secondary text-xs font-bold">{h.players?.initials}</AvatarFallback>
                         </Avatar>
-                        <div>
-                          <div className="font-semibold text-sm group-hover:text-primary transition-colors">{h.players?.name}</div>
-                          <div className="text-xs text-muted-foreground">{h.shares} shares · avg ${h.avg_buy_price.toFixed(2)}</div>
+                        <div className="min-w-0">
+                          <div className="font-semibold text-sm group-hover:text-primary transition-colors truncate">{h.players?.name}</div>
+                          <div className="text-xs text-muted-foreground">{h.shares} sh · avg ${h.avg_buy_price.toFixed(2)}</div>
                         </div>
                       </div>
-                      <div className="text-right">
+                      <div className="text-right shrink-0 ml-2">
                         <div className="font-bold text-sm">${h.currentValue.toFixed(2)}</div>
                         <div className={`text-xs font-semibold flex items-center gap-0.5 justify-end ${h.pnl >= 0 ? "text-sport-green" : "text-destructive"}`}>
                           {h.pnl >= 0 ? <ArrowUpRight className="h-3 w-3" /> : <ArrowDownRight className="h-3 w-3" />}
-                          ${Math.abs(h.pnl).toFixed(2)} ({h.pnl >= 0 ? "+" : ""}{h.pnlPercent.toFixed(1)}%)
+                          <span className="hidden xs:inline">${Math.abs(h.pnl).toFixed(2)} </span>({h.pnl >= 0 ? "+" : ""}{h.pnlPercent.toFixed(1)}%)
                         </div>
                       </div>
                     </Link>
@@ -151,7 +151,7 @@ const Portfolio = () => {
             </div>
 
             {/* Trade history timeline */}
-            <div className="rounded-xl border bg-card p-6">
+            <div className="rounded-xl border bg-card p-4 sm:p-6">
               <h3 className="text-lg font-bold mb-4">Trade History</h3>
               {trades.length === 0 ? (
                 <p className="text-sm text-muted-foreground text-center py-6">No trades yet.</p>
@@ -191,8 +191,8 @@ const Portfolio = () => {
           </div>
 
           {/* Right column: pie chart */}
-          <div className="w-full lg:w-80 shrink-0">
-            <div className="rounded-xl border bg-card p-6 sticky top-20">
+          <div className="w-full lg:w-72 xl:w-80 shrink-0">
+            <div className="rounded-xl border bg-card p-4 sm:p-6 lg:sticky lg:top-4">
               <h3 className="font-bold text-lg mb-4">Allocation</h3>
               {pieData.length === 0 ? (
                 <p className="text-sm text-muted-foreground text-center py-8">No data yet</p>

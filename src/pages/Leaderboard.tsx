@@ -114,30 +114,30 @@ export default function Leaderboard() {
 
   return (
     <DashboardLayout>
-      <div className="max-w-3xl mx-auto space-y-6">
+      <div className="max-w-3xl mx-auto space-y-5 sm:space-y-6 p-4 sm:p-6 lg:p-8">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-yellow-500/10">
-            <Trophy className="h-6 w-6 text-yellow-400" />
+          <div className="p-2 rounded-lg bg-yellow-500/10 shrink-0">
+            <Trophy className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">Global Leaderboards</h1>
+            <h1 className="text-xl sm:text-2xl font-bold">Global Leaderboards</h1>
             <p className="text-sm text-muted-foreground">Rankings across all leagues and platforms</p>
           </div>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid grid-cols-3 w-full">
-            <TabsTrigger value="wins" className="gap-2">
-              <Trophy className="h-3.5 w-3.5" />
-              Win Leaders
+            <TabsTrigger value="wins" className="gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
+              <Trophy className="h-3.5 w-3.5 shrink-0" />
+              <span className="hidden xs:inline">Win </span>Leaders
             </TabsTrigger>
-            <TabsTrigger value="portfolio" className="gap-2">
-              <Wallet className="h-3.5 w-3.5" />
+            <TabsTrigger value="portfolio" className="gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
+              <Wallet className="h-3.5 w-3.5 shrink-0" />
               Portfolio
             </TabsTrigger>
-            <TabsTrigger value="nfts" className="gap-2">
-              <Layers className="h-3.5 w-3.5" />
-              NFT Collectors
+            <TabsTrigger value="nfts" className="gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4">
+              <Layers className="h-3.5 w-3.5 shrink-0" />
+              <span className="hidden xs:inline">NFT </span>Collectors
             </TabsTrigger>
           </TabsList>
 

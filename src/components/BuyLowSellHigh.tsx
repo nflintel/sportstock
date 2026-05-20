@@ -1,4 +1,4 @@
-import { TrendingUp, BarChart3, Smartphone, Users } from "lucide-react";
+import { TrendingUp, ChartBar as BarChart3, Smartphone, Users } from "lucide-react";
 import basketballImg from "@/assets/basketball-action.jpg";
 
 const features = [
@@ -21,22 +21,22 @@ const features = [
 
 const BuyLowSellHigh = () => {
   return (
-    <section id="trade" className="py-24 relative overflow-hidden">
-      <div className="container grid gap-16 lg:grid-cols-2 items-center">
+    <section id="trade" className="py-16 sm:py-24 relative overflow-hidden">
+      <div className="container grid gap-10 sm:gap-16 lg:grid-cols-2 items-center">
         {/* Image side */}
         <div className="relative">
           <div className="relative overflow-hidden ea-clip">
             <img
               src={basketballImg}
               alt="Basketball player in action"
-              className="w-full aspect-[4/5] object-cover"
+              className="w-full aspect-[4/5] sm:aspect-[4/5] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <div className="text-6xl font-extrabold gradient-text text-shadow-heavy">
+            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
+              <div className="text-4xl sm:text-6xl font-extrabold gradient-text text-shadow-heavy">
                 Buy Low
               </div>
-              <div className="text-6xl font-extrabold gradient-text text-shadow-heavy">
+              <div className="text-4xl sm:text-6xl font-extrabold gradient-text text-shadow-heavy">
                 Sell High
               </div>
             </div>
@@ -47,27 +47,27 @@ const BuyLowSellHigh = () => {
 
         {/* Features side */}
         <div>
-          <div className="border-l-4 border-primary pl-6 mb-8">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">
+          <div className="border-l-4 border-primary pl-5 sm:pl-6 mb-7 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground mb-3 sm:mb-4">
               Maximize Your <span className="gradient-text">Returns</span>
             </h2>
-            <p className="text-muted-foreground max-w-lg font-medium">
-              Just like the stock market, athlete share prices fluctuate based on performance. 
+            <p className="text-muted-foreground max-w-lg font-medium text-sm sm:text-base">
+              Just like the stock market, athlete share prices fluctuate based on performance.
               Spot the opportunity and dominate.
             </p>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             {features.map((feature, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 p-5 border-l-2 border-transparent bg-card/40 backdrop-blur-sm transition-all hover:border-primary hover:bg-card/70 group"
+                className="flex items-start gap-4 p-4 sm:p-5 border-l-2 border-transparent bg-card/40 backdrop-blur-sm transition-all hover:border-primary hover:bg-card/70 group"
               >
-                <div className="h-12 w-12 bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <feature.icon className="h-6 w-6 text-primary" />
+                <div className="h-11 w-11 sm:h-12 sm:w-12 bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-extrabold text-foreground mb-1 uppercase">{feature.title}</h3>
+                  <h3 className="font-extrabold text-foreground mb-1 uppercase text-sm sm:text-base">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground font-medium">{feature.description}</p>
                 </div>
               </div>

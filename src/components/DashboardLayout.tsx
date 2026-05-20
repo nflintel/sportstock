@@ -48,23 +48,27 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
         <DashboardSidebar />
-        <div className="flex-1 flex flex-col">
-          <header className="h-14 flex items-center justify-between border-b px-4 bg-card">
-            <SidebarTrigger className="ml-1" />
-            <div className="flex items-center gap-4">
+        <div className="flex-1 flex flex-col min-w-0">
+          <header className="h-14 flex items-center justify-between border-b px-3 sm:px-4 bg-card shrink-0">
+            <SidebarTrigger className="ml-1 shrink-0" />
+            <div className="flex items-center gap-2 sm:gap-4">
               {user ? (
                 <>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Wallet className="h-4 w-4 text-sport-green" />
-                    <span className="font-semibold">${wallet?.balance?.toFixed(2) ?? "0.00"}</span>
+                  <div className="flex items-center gap-1.5 text-sm bg-muted/50 rounded-md px-2 sm:px-3 py-1.5">
+                    <Wallet className="h-3.5 w-3.5 text-sport-green shrink-0" />
+                    <span className="font-semibold text-xs sm:text-sm">${wallet?.balance?.toFixed(2) ?? "0.00"}</span>
                   </div>
                   <ThemeToggle />
                   <Link to="/profile">
-                    <Avatar className="h-8 w-8 border border-border">
+                    <Avatar className="h-8 w-8 border border-border hover:border-primary transition-colors">
                       <AvatarFallback className="bg-secondary text-xs font-bold">{initials}</AvatarFallback>
                     </Avatar>
                   </Link>
-                  <button onClick={handleSignOut} className="text-muted-foreground hover:text-foreground">
+                  <button
+                    onClick={handleSignOut}
+                    className="text-muted-foreground hover:text-foreground p-1 rounded-sm transition-colors"
+                    aria-label="Sign out"
+                  >
                     <LogOut className="h-4 w-4" />
                   </button>
                 </>
@@ -80,7 +84,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               )}
             </div>
           </header>
-          <main className="flex-1 overflow-auto">{children}</main>
+          <main className="flex-1 overflow-auto min-w-0">{children}</main>
         </div>
       </div>
     </SidebarProvider>

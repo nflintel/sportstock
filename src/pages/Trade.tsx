@@ -261,37 +261,37 @@ const Trade = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-6 lg:p-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1">
-            <div className="rounded-xl border bg-card p-6 mb-6">
-              <div className="flex items-center gap-4 mb-6">
+      <div className="p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+          <div className="flex-1 min-w-0">
+            <div className="rounded-xl border bg-card p-4 sm:p-6 mb-5 sm:mb-6">
+              <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
                 <Link to={`/player/${playerId}`}>
-                  <Avatar className="h-16 w-16 border-2 border-border">
-                    <AvatarFallback className="bg-secondary text-lg font-bold">{player?.initials ?? "?"}</AvatarFallback>
+                  <Avatar className="h-12 w-12 sm:h-16 sm:w-16 border-2 border-border">
+                    <AvatarFallback className="bg-secondary text-base sm:text-lg font-bold">{player?.initials ?? "?"}</AvatarFallback>
                   </Avatar>
                 </Link>
                 <div>
-                  <Link to={`/player/${playerId}`} className="text-xl font-bold hover:text-primary transition-colors">
+                  <Link to={`/player/${playerId}`} className="text-lg sm:text-xl font-bold hover:text-primary transition-colors">
                     {player?.name ?? "Loading..."}
                   </Link>
                   <p className="text-sm text-muted-foreground">{player?.team}</p>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="rounded-lg bg-muted/50 p-4 text-center">
-                  <div className="text-lg font-bold">${totalValue.toFixed(2)}</div>
-                  <div className="text-[11px] text-muted-foreground">Total Value ({userShares} Shares)</div>
+              <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                <div className="rounded-lg bg-muted/50 p-2 sm:p-4 text-center">
+                  <div className="text-sm sm:text-lg font-bold">${totalValue.toFixed(2)}</div>
+                  <div className="text-[10px] sm:text-[11px] text-muted-foreground leading-tight mt-0.5">Value ({userShares})</div>
                 </div>
-                <div className="rounded-lg bg-muted/50 p-4 text-center">
-                  <div className="text-lg font-bold">${pricePerShare.toFixed(2)}</div>
-                  <div className="text-[11px] text-muted-foreground">Current Price</div>
+                <div className="rounded-lg bg-muted/50 p-2 sm:p-4 text-center">
+                  <div className="text-sm sm:text-lg font-bold">${pricePerShare.toFixed(2)}</div>
+                  <div className="text-[10px] sm:text-[11px] text-muted-foreground leading-tight mt-0.5">Price</div>
                 </div>
-                <div className="rounded-lg bg-muted/50 p-4 text-center">
-                  <div className={`text-lg font-bold ${(player?.change_24h ?? 0) >= 0 ? "text-sport-green" : "text-destructive"}`}>
+                <div className="rounded-lg bg-muted/50 p-2 sm:p-4 text-center">
+                  <div className={`text-sm sm:text-lg font-bold ${(player?.change_24h ?? 0) >= 0 ? "text-sport-green" : "text-destructive"}`}>
                     {(player?.change_24h ?? 0) >= 0 ? "+" : ""}{(player?.change_24h ?? 0).toFixed(2)}%
                   </div>
-                  <div className="text-[11px] text-muted-foreground">24H Change</div>
+                  <div className="text-[10px] sm:text-[11px] text-muted-foreground leading-tight mt-0.5">24H</div>
                 </div>
               </div>
             </div>
@@ -310,7 +310,7 @@ const Trade = () => {
               </TabsList>
 
               <TabsContent value="trade">
-                <div className="rounded-xl border bg-card p-6">
+                <div className="rounded-xl border bg-card p-4 sm:p-6">
                   <div className="flex gap-1 bg-muted rounded-lg p-1 mb-6">
                     <button
                       onClick={() => setActiveTradeTab("buy")}
@@ -357,7 +357,7 @@ const Trade = () => {
 
               <TabsContent value="orders" className="space-y-6">
                 {player && (
-                  <div className="rounded-xl border bg-card p-6">
+                  <div className="rounded-xl border bg-card p-4 sm:p-6">
                     <h3 className="font-bold mb-4">Set Automated Order</h3>
                     <SetOrderForm playerId={player.id} playerName={player.name} currentPrice={player.price} />
                   </div>
@@ -392,7 +392,7 @@ const Trade = () => {
             </Tabs>
           </div>
 
-          <div className="w-full lg:w-80 shrink-0">
+          <div className="w-full lg:w-72 xl:w-80 shrink-0">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-bold text-lg">Upcoming Games</h3>
               <Link to="/league" className="text-xs text-primary font-semibold hover:underline">VIEW ALL</Link>
